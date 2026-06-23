@@ -363,26 +363,25 @@ sequenceDiagram
             }
         });
 
-        // Render all mermaid diagrams
+        // Stash original source before first render, then render all diagrams
         const mermaidDivs = document.querySelectorAll('.mermaid');
         mermaidDivs.forEach((div, index) => {
-            const graphDefinition = div.textContent;
+            div.dataset.src = div.textContent.trim();
             div.innerHTML = '';
-            mermaid.render(`mermaid-${index}`, graphDefinition).then(result => {
+            mermaid.render(`mermaid-${index}`, div.dataset.src).then(result => {
                 div.innerHTML = result.svg;
             });
         });
     });
 
-    // Re-render Mermaid on slide change to ensure visibility
+    // Re-render Mermaid on slide change — always use the stashed source
     Reveal.on('slidechanged', event => {
         const mermaidDivs = event.currentSlide.querySelectorAll('.mermaid');
         if (mermaidDivs.length > 0) {
             mermaidDivs.forEach((div, index) => {
                 if (!div.querySelector('svg')) {
-                    const graphDefinition = div.textContent;
                     div.innerHTML = '';
-                    mermaid.render(`mermaid-slide-${Date.now()}-${index}`, graphDefinition).then(result => {
+                    mermaid.render(`mermaid-slide-${Date.now()}-${index}`, div.dataset.src).then(result => {
                         div.innerHTML = result.svg;
                     });
                 }
