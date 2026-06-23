@@ -1,0 +1,887 @@
+/* Custom styles for Foundation Models presentation - Light Theme for 1200x800 */
+
+/* Root variables for consistent theming - Light Mode */
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #059669;
+    --accent-color: #d97706;
+    --text-color: #1f2937;
+    --text-light: #6b7280;
+    --bg-light: #ffffff;
+    --bg-lighter: #f9fafb;
+    --code-bg: #f3f4f6;
+    --border-color: #e5e7eb;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Global reveal.js overrides - Optimized for 1200x800 */
+.reveal {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px; /* Reduced from 38px for 1200x800 */
+    color: var(--text-color);
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: normal;
+    color: var(--text-color);
+}
+
+.reveal h1 {
+    font-size: 1.8em; /* Reduced from 2.5em */
+    color: var(--primary-color);
+    margin-top: 0.1em; /* Minimal top margin for maximum space */
+    margin-bottom: 0.3em;
+}
+
+.reveal h2 {
+    font-size: 1.4em; /* Reduced from 1.8em */
+    color: var(--secondary-color);
+    margin-top: 0.1em; /* Minimal top margin for maximum space */
+    margin-bottom: 0.4em;
+}
+
+.reveal h3 {
+    font-size: 1.1em; /* Reduced from 1.4em */
+    color: var(--accent-color);
+    margin-top: 0.1em; /* Minimal top margin for maximum space */
+    margin-bottom: 0.3em;
+}
+
+.reveal h4 {
+    font-size: 1em; /* Reduced from 1.2em */
+    color: var(--text-color);
+    margin-top: 0.1em; /* Minimal top margin for maximum space */
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+/* Links */
+.reveal a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.reveal a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+/* Lists - Compact for 1200x800 */
+.reveal ul,
+.reveal ol {
+    text-align: left;
+    margin: 0 0 0.5em 1.5em;
+    line-height: 1.4;
+}
+
+.reveal ul li,
+.reveal ol li {
+    margin-bottom: 0.3em; /* Reduced from 0.5em */
+    line-height: 1.3;
+}
+
+/* Code blocks - Smaller for 1200x800 */
+.reveal pre {
+    width: 100%;
+    margin: 0.5em auto;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    border-radius: 6px;
+    background-color: var(--code-bg);
+    border: 1px solid var(--border-color);
+}
+
+.reveal code {
+    font-family: 'Fira Code', 'Courier New', monospace;
+    padding: 0.1em 0.3em;
+    background-color: var(--code-bg);
+    border-radius: 3px;
+    font-size: 0.8em; /* Reduced from 0.85em */
+    color: var(--text-color);
+}
+
+.reveal pre code {
+    padding: 0.6em;
+    max-height: 450px; /* Reduced from 600px */
+    overflow: auto;
+    font-size: 0.6em; /* Reduced from 0.7em */
+    line-height: 1.3;
+    color: var(--text-color);
+}
+
+/* Tables - Compact */
+.reveal table {
+    margin: 0.5em auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 0.7em; /* Reduced from 0.8em */
+}
+
+.reveal table th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    padding: 0.4em 0.8em; /* Reduced padding */
+    border: 1px solid var(--border-color);
+}
+
+.reveal table td {
+    padding: 0.3em 0.8em; /* Reduced padding */
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.reveal table tr:nth-child(even) {
+    background-color: var(--bg-lighter);
+}
+
+.reveal table tr:hover {
+    background-color: #e0f2fe;
+}
+
+/* Math equation SVG images */
+.reveal img[alt*="formula"],
+.reveal img[alt*="equation"] {
+    display: block;
+    margin: 1em auto;
+    max-width: 80%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+}
+
+/* Blockquotes */
+.reveal blockquote {
+    width: 90%;
+    margin: 0.5em auto;
+    padding: 0.5em; /* Reduced from 0.8em */
+    background: var(--bg-lighter);
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 2px 8px var(--shadow-color);
+    font-style: italic;
+    color: var(--text-light);
+}
+
+/* Grid layouts - Compact */
+.reveal .grid-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem; /* Reduced from 2rem */
+    margin-top: 1rem;
+}
+
+.reveal .grid-3col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.8rem; /* Reduced from 1.5rem */
+    margin-top: 1rem;
+}
+
+/* Cards/Boxes */
+.reveal .card {
+    background: var(--bg-lighter);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 1em;
+    box-shadow: 0 2px 6px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.reveal .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+/* Highlight boxes */
+.reveal .highlight {
+    background: #dbeafe;
+    border-left: 3px solid var(--primary-color);
+    padding: 0.6em;
+    margin: 0.5em 0;
+    border-radius: 4px;
+}
+
+.reveal .success {
+    background: #d1fae5;
+    border-left: 3px solid var(--secondary-color);
+    padding: 0.6em;
+    margin: 0.5em 0;
+    border-radius: 4px;
+}
+
+.reveal .warning {
+    background: #fed7aa;
+    border-left: 3px solid var(--accent-color);
+    padding: 0.6em;
+    margin: 0.5em 0;
+    border-radius: 4px;
+}
+
+/* Icons and emojis */
+.reveal .icon {
+    font-size: 1.3em;
+    vertical-align: middle;
+    margin-right: 0.2em;
+}
+
+/* Slide numbers */
+.reveal .slide-number {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 0.5em;
+}
+
+/* Progress bar */
+.reveal .progress {
+    background: var(--border-color);
+    height: 3px;
+}
+
+.reveal .progress span {
+    background: var(--primary-color);
+}
+
+/* Controls */
+.reveal .controls {
+    color: var(--primary-color);
+}
+
+.reveal .controls button {
+    color: var(--primary-color);
+}
+
+.reveal .controls button:hover {
+    color: var(--secondary-color);
+}
+
+/* Fragments */
+.reveal .fragment.highlight-current-blue.current-fragment {
+    color: var(--primary-color);
+}
+
+.reveal .fragment.highlight-green.visible {
+    color: var(--secondary-color);
+}
+
+/* Speaker notes indicator */
+.reveal aside.notes {
+    display: none;
+}
+
+/* Title slide specific */
+.reveal section[data-state="title"] h1 {
+    font-size: 2.2em;
+    margin-bottom: 0.3em;
+}
+
+.reveal section[data-state="title"] h3 {
+    color: var(--text-light);
+    font-weight: 300;
+}
+
+/* Two-column layout helper */
+.reveal .columns {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.reveal .column {
+    flex: 1;
+}
+
+/* "Matched" two-column layout (e.g. a plot aligned to a text box).
+   The row height is governed by the text-box column: the plot image is taken
+   out of the normal flow, so it is always vertically centered against the text
+   box AND never rendered taller than it (on very wide viewports it shrinks in
+   height instead of overflowing). Hover (click-to-zoom) behaviour is preserved. */
+.reveal .columns.columns-match {
+    align-items: stretch;                 /* plot column stretched to text-box height */
+}
+
+.reveal .columns-match .column-plot {
+    position: relative;                   /* positioning context for the image */
+    min-width: 0;
+}
+
+.reveal .columns-match .column-plot > img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);     /* center on both axes */
+    width: auto;
+    height: auto;
+    max-width: 100%;                      /* never wider than its column */
+    max-height: 100%;                     /* never taller than the text box */
+}
+
+/* Preserve the global click-to-zoom hover zoom, combined with the centering. */
+.reveal .columns-match .column-plot > img:hover {
+    transform: translate(-50%, -50%) scale(1.02);
+}
+
+/* When the columns stack on small screens, let the image flow normally again. */
+@media screen and (max-width: 768px) {
+    .reveal .columns-match .column-plot > img,
+    .reveal .columns-match .column-plot > img:hover {
+        position: static;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        max-height: none;
+    }
+}
+
+/* Image styling */
+.reveal img {
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px var(--shadow-color);
+    border-radius: 6px;
+    background: white;
+}
+
+/* Small text helper */
+.reveal .small {
+    font-size: 0.7em;
+}
+
+.reveal .smaller {
+    font-size: 0.6em;
+}
+
+/* Text alignment helpers */
+.reveal .text-left {
+    text-align: left;
+}
+
+.reveal .text-center {
+    text-align: center;
+}
+
+.reveal .text-right {
+    text-align: right;
+}
+
+/* Margin helpers - Compact */
+.reveal .mt-1 { margin-top: 0.5rem; }
+.reveal .mt-2 { margin-top: 1rem; }
+.reveal .mb-1 { margin-bottom: 0.5rem; }
+.reveal .mb-2 { margin-bottom: 1rem; }
+
+/* Badge/Tag styling */
+.reveal .badge {
+    display: inline-block;
+    padding: 0.2em 0.5em;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 3px;
+    font-size: 0.65em;
+    font-weight: 600;
+    margin: 0 0.2em;
+}
+
+.reveal .badge.success {
+    background: var(--secondary-color);
+}
+
+.reveal .badge.warning {
+    background: var(--accent-color);
+}
+
+/* Comparison table styling */
+.reveal .comparison-table {
+    font-size: 0.65em;
+}
+
+.reveal .comparison-table td:first-child {
+    font-weight: 600;
+    background-color: var(--bg-lighter);
+}
+
+/* Formula box */
+.reveal .formula-box {
+    background: #dbeafe;
+    border: 2px solid var(--primary-color);
+    border-radius: 6px;
+    padding: 1em;
+    margin: 0.5em auto;
+    max-width: 90%;
+}
+
+/* Key takeaways box */
+.reveal .takeaways {
+    background: #d1fae5;
+    border: 2px solid var(--secondary-color);
+    border-radius: 6px;
+    padding: 1em;
+    margin: 0.5em auto;
+    text-align: left;
+}
+
+.reveal .takeaways h4 {
+    color: var(--secondary-color);
+    margin-top: 0;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .reveal {
+        font-size: 20px;
+    }
+    
+    .reveal .grid-2col,
+    .reveal .grid-3col {
+        grid-template-columns: 1fr;
+    }
+    
+    .reveal .columns {
+        flex-direction: column;
+    }
+}
+
+/* Print styles */
+@media print {
+    .reveal {
+        font-size: 18px;
+    }
+    
+    .reveal .slide-number {
+        display: none;
+    }
+}
+
+/* Animation for slide transitions */
+.reveal .slides section {
+    transition: transform 0.8s ease;
+}
+
+/* Custom bullet points */
+.reveal ul {
+    list-style-type: none;
+}
+
+.reveal ul li::before {
+    content: "▸";
+    color: var(--primary-color);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+/* Nested list styling */
+.reveal ul ul li::before {
+    content: "◦";
+    color: var(--secondary-color);
+}
+
+/* Checkmark list */
+.reveal ul.checklist {
+    list-style-type: none;
+}
+
+.reveal ul.checklist li::before {
+    content: "✓";
+    color: var(--secondary-color);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+/* Slide background */
+.reveal .slides {
+    background-color: var(--bg-light);
+}
+
+/* Ensure good contrast for light theme */
+.reveal section {
+    color: var(--text-color);
+}
+
+/* Adjust spacing for compact display */
+.reveal p {
+    margin: 0.3em 0;
+    line-height: 1.4;
+}
+
+/* Compact section spacing */
+.reveal section {
+    padding: 0;
+}
+
+/* Image Modal for Click-to-Zoom */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    cursor: zoom-out;
+    animation: fadeIn 0.3s ease;
+}
+
+.image-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-modal-content {
+    max-width: 95%;
+    max-height: 95%;
+    object-fit: contain;
+    animation: zoomIn 0.3s ease;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+}
+
+.image-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.5);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.image-modal-close:hover,
+.image-modal-close:focus {
+    color: #bbb;
+    text-decoration: none;
+}
+
+.image-modal-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 5px;
+    max-width: 80%;
+}
+
+/* Make images clickable */
+.reveal img {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reveal img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* Model architecture code box */
+.reveal .model-code-box {
+    background: var(--code-bg);
+    border: 2px solid var(--primary-color);
+    border-radius: 6px;
+    padding: 0.8em;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 0.45em;  /* Small to fit all content */
+    line-height: 1.3;
+    overflow-y: auto;
+    max-height: 500px;  /* Scrollable if needed */
+    text-align: left;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reveal .model-code-box:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.reveal .model-code-box pre {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.reveal .model-code-box code {
+    background: transparent;
+    padding: 0;
+    font-size: 1em;
+    color: var(--text-color);
+}
+
+/* Code modal for zoomed view */
+.code-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    cursor: zoom-out;
+    animation: fadeIn 0.3s ease;
+}
+
+.code-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.code-modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    overflow: auto;
+    background: var(--code-bg);
+    border: 3px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 2em;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 1.2em;
+    line-height: 1.4;
+    color: var(--text-color);
+    animation: zoomIn 0.3s ease;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+.code-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.5);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.code-modal-close:hover,
+.code-modal-close:focus {
+    color: #bbb;
+    text-decoration: none;
+}
+
+/* ========================================
+   Interactive Plot Containers (Plotly)
+   ======================================== */
+
+/* Standard interactive plot container */
+.plot-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    margin: 20px auto;
+}
+
+.plot-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+/* Smaller plots for side-by-side layouts */
+.plot-container.small {
+    height: 450px;
+}
+
+/* Full-screen plots for detailed visualizations */
+.plot-container.fullscreen {
+    height: 700px;
+}
+
+/* Compact plots for slides with more content */
+.plot-container.compact {
+    height: 400px;
+    margin: 10px auto;
+}
+
+/* Remove border and shadow from iframe plots */
+.reveal .plot-container iframe {
+    border: none;
+    box-shadow: none;
+}
+
+/* Hover effect for interactive plots */
+.plot-container:hover {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease;
+}
+
+/* Loading indicator for iframes */
+.plot-container::before {
+    content: "Loading interactive plot...";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--text-light);
+    font-size: 0.9em;
+    z-index: -1;
+}
+
+/* Responsive adjustments for interactive plots */
+@media screen and (max-width: 768px) {
+    .plot-container {
+        height: 400px;
+    }
+    
+    .plot-container.small {
+        height: 300px;
+    }
+    
+    .plot-container.fullscreen {
+        height: 500px;
+    }
+}
+
+/* Print styles for interactive plots - show fallback */
+@media print {
+    .plot-container iframe {
+        display: none;
+    }
+    
+    .plot-container img {
+        display: block !important;
+        max-width: 100%;
+        height: auto;
+    }
+}
+/* Made with Bob */
+
+/* ========================================
+   Speech Bubble (for Glossary slide)
+   ======================================== */
+
+.reveal .speech-bubble {
+    position: relative;
+    display: inline-block;
+    background: #dbeafe;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 0.5em 0.9em;
+    font-size: 0.75em;
+    font-weight: 600;
+    color: var(--primary-color);
+    white-space: nowrap;
+}
+
+/* Tail pointing down-left (default) */
+.reveal .speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -14px;
+    left: 18px;
+    border-width: 14px 10px 0 0;
+    border-style: solid;
+    border-color: var(--primary-color) transparent transparent transparent;
+}
+
+.reveal .speech-bubble::before {
+    content: '';
+    position: absolute;
+    bottom: -11px;
+    left: 20px;
+    border-width: 12px 8px 0 0;
+    border-style: solid;
+    border-color: #dbeafe transparent transparent transparent;
+    z-index: 1;
+}
+
+/* Tail pointing right (toward a speaker to the right) */
+.reveal .speech-bubble--right::after {
+    bottom: auto;
+    left: auto;
+    top: 50%;
+    right: -14px;
+    transform: translateY(-50%);
+    border-width: 8px 0 8px 14px;
+    border-color: transparent transparent transparent var(--primary-color);
+}
+
+.reveal .speech-bubble--right::before {
+    bottom: auto;
+    left: auto;
+    top: 50%;
+    right: -11px;
+    transform: translateY(-50%);
+    border-width: 6px 0 6px 11px;
+    border-color: transparent transparent transparent #dbeafe;
+    z-index: 1;
+}
+
+/* User figure helper */
+.reveal .user-figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3em;
+}
+
+.reveal .user-figure .user-icon {
+    font-size: 3em;
+    line-height: 1;
+}
+
+.reveal .user-figure .user-label {
+    font-size: 0.65em;
+    color: var(--text-light);
+    font-weight: 600;
+}

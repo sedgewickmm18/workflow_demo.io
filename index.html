@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Data Intelligence Agent – Workflow Demo">
+    <meta name="author" content="">
+
+    <title>Data Intelligence Agent – Workflow Demo</title>
+
+    <!-- Reveal.js CSS from CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/theme/white.css" id="theme">
+
+    <!-- Theme used for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/plugin/highlight/monokai.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+    <!-- Mermaid.js for diagrams -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+
+        <!-- ============================================================
+             SLIDE 1 – Architecture
+             ============================================================ -->
+        <section id="architecture">
+            <h2>Data Intelligence MCP Server</h2>
+            <p style="color: var(--text-light); font-size: 0.75em; margin-bottom: 1.2em;">
+                MCP-based architecture — Goose connects User, Data Intelligence, and local LLM
+            </p>
+
+            <div class="mermaid" style="max-width: 900px; margin: 0 auto;">
+flowchart TD
+    subgraph row["&nbsp;"]
+        direction LR
+        U(["👤 User"])
+        G["MCP Client — Goose"]
+        L[("LLM &#40;local&#41;")]
+    end
+    S["MCP Server — Data Intelligence"]
+
+    U -- "request" --> G
+    G -- "answer" --> U
+    G -- "tool calls" --> S
+    S -- "response" --> G
+    G -- "prompt" --> L
+    L -- "completion" --> G
+
+    style U fill:#e1f5ff,stroke:#2563eb,color:#1f2937
+    style G fill:#fff4e1,stroke:#d97706,color:#1f2937
+    style S fill:#d1fae5,stroke:#059669,color:#1f2937
+    style L fill:#f0e1ff,stroke:#7c3aed,color:#1f2937
+    style row fill:none,stroke:none
+            </div>
+
+            <aside class="notes">
+                The architecture shows a local LLM exposed through an MCP server called
+                "Data Intelligence". The user talks to Goose (MCP client) which translates
+                natural language into tool calls against the server.
+            </aside>
+        </section>
+
+        <!-- ============================================================
+             SLIDE 2 – Working with your Tasks
+             ============================================================ -->
+        <section id="tasks">
+            <h2>Working with your Tasks</h2>
+
+            <div class="grid-2col" style="margin-top: 0.8em; align-items: start;">
+
+                <!-- Left: task inbox table -->
+                <div>
+                    <h4 style="margin-bottom: 0.5em;">Task Inbox</h4>
+                    <table style="width:100%; font-size: 0.6em;">
+                        <thead>
+                            <tr>
+                                <th>Task</th>
+                                <th>Status</th>
+                                <th>Created</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #dbeafe;">
+                                <td><strong>Send for approval: <em>Test</em></strong></td>
+                                <td><span class="badge">Created</span></td>
+                                <td>2026-05-18</td>
+                            </tr>
+                            <tr>
+                                <td>Send for approval: <em>Contingency</em></td>
+                                <td><span class="badge">Created</span></td>
+                                <td>2026-06-04</td>
+                            </tr>
+                            <tr>
+                                <td>Send for approval: <em>Cap Rate</em></td>
+                                <td><span class="badge">Created</span></td>
+                                <td>2026-06-04</td>
+                            </tr>
+                            <tr>
+                                <td>Send for approval: <em>Comps</em></td>
+                                <td><span class="badge">Created</span></td>
+                                <td>2026-06-09</td>
+                            </tr>
+                            <tr>
+                                <td>Send for approval: <em>Net Operating Income</em></td>
+                                <td><span class="badge">Created</span></td>
+                                <td>2026-06-23</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="font-size: 0.55em; color: var(--text-light); margin-top: 0.6em;">
+                        ▸ Highlighted row = task claimed by user
+                    </p>
+                </div>
+
+                <!-- Right: claim & complete flow -->
+                <div>
+                    <h4 style="margin-bottom: 0.5em;">Claim &amp; Complete via Goose</h4>
+                    <div class="mermaid" style="font-size: 0.85em;">
+sequenceDiagram
+    participant U as 👤 User
+    participant G as Goose
+    participant S as Data Intelligence
+
+    U->>G: "Claim task: Test"
+    G->>S: claim_task(id=Test)
+    S-->>G: Claimed ✓
+    G-->>U: Task claimed
+
+    U->>G: "Complete task"
+    G->>S: complete_task(id=Test)
+    S-->>G: Done ✓
+    G-->>U: Task completed
+                    </div>
+                </div>
+
+            </div>
+
+            <aside class="notes">
+                The user asks Goose to claim and then complete a task from their inbox.
+                Goose translates these into structured tool calls against the Data Intelligence server.
+            </aside>
+        </section>
+
+        <!-- ============================================================
+             SLIDE 3 – Insights into your Workflows
+             ============================================================ -->
+        <section id="workflows">
+            <h2>Insights into your Workflows</h2>
+
+            <table style="width: 100%; font-size: 0.55em; margin-top: 0.8em;">
+                <thead>
+                    <tr>
+                        <th>Workflow Request</th>
+                        <th>State</th>
+                        <th>Age</th>
+                        <th>Created On</th>
+                        <th>Total</th>
+                        <th>Done</th>
+                        <th>In Progress</th>
+                        <th>Pending</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Create Business term <em>Comps</em></td>
+                        <td><span class="badge warning">Rejected</span></td>
+                        <td>37 days ago</td>
+                        <td>2026-05-16</td>
+                        <td>1</td><td>0</td><td>0</td><td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Create Business term <em>Net Operating Income</em></td>
+                        <td><span class="badge warning">Rejected</span></td>
+                        <td>37 days ago</td>
+                        <td>2026-05-16</td>
+                        <td>1</td><td>0</td><td>0</td><td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Create Business term <em>Cap Rate</em></td>
+                        <td><span class="badge warning">Rejected</span></td>
+                        <td>37 days ago</td>
+                        <td>2026-05-16</td>
+                        <td>1</td><td>0</td><td>0</td><td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Create Business term <em>Contingency</em></td>
+                        <td><span class="badge warning">Rejected</span></td>
+                        <td>37 days ago</td>
+                        <td>2026-05-16</td>
+                        <td>1</td><td>0</td><td>0</td><td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Create Business term <em>Test</em></td>
+                        <td><span class="badge warning">Rejected</span></td>
+                        <td>141 days ago</td>
+                        <td>2026-02-02</td>
+                        <td>1</td><td>0</td><td>0</td><td>0</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight" style="margin-top: 1em; font-size: 0.65em;">
+                ▸ Ask Goose: <em>"Show me all my workflows"</em>
+            </div>
+
+            <aside class="notes">
+                Goose queries the Data Intelligence server to list all workflows owned by the user,
+                returning key metrics: state, age, and task completion stats.
+            </aside>
+        </section>
+
+        <!-- ============================================================
+             SLIDE 4 – Glossary Artifacts Approvals
+             ============================================================ -->
+        <section id="glossary">
+            <h2>Glossary Artifacts Approvals</h2>
+
+            <div class="columns" style="margin-top: 0.8em; align-items: flex-start; gap: 2rem;">
+
+                <!-- Left: term card + detail card -->
+                <div class="column" style="flex: 1.4;">
+                    <h4>Business Term retrieved via Goose</h4>
+
+                    <div class="card" style="font-size: 0.65em; margin-bottom: 0.8em;">
+                        <div style="display: grid; grid-template-columns: auto 1fr; gap: 0.3em 0.8em;">
+                            <span style="color: var(--text-light); font-weight: 600;">Name</span>
+                            <span><strong>Test</strong></span>
+                            <span style="color: var(--text-light); font-weight: 600;">Global ID</span>
+                            <span style="font-family: 'Fira Code', monospace; font-size: 0.9em; color: var(--text-light);">
+                                9da4351c-f2a8-40b0-b677-8c16e8d4065a<br>
+                                _5bd5bdb8-a564-4e91-a4e7-1cc7d9d29581
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="success" style="font-size: 0.65em;">
+                        ▸ Ask Goose: <em>"Who approved business term Test?"</em>
+                    </div>
+                </div>
+
+                <!-- Right: user asking for approver -->
+                <div class="column" style="flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding-top: 1.5em; padding-left: 2em; gap: 0;">
+
+                    <!-- Speech bubble — default tail points down-left at ~18px from left -->
+                    <div class="speech-bubble">Approver ?</div>
+
+                    <!-- User figure: margin-left aligns its centre with the tail tip -->
+                    <div class="user-figure" style="margin-top: 1em; margin-left: -0.9em;">
+                        <div class="user-icon">👤</div>
+                        <div class="user-label">User</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <aside class="notes">
+                After retrieving the business term, the user can drill down to ask who approved it.
+                Goose calls the Data Intelligence server to fetch the approval history.
+            </aside>
+        </section>
+
+        <!-- ============================================================
+             SLIDE 5 – Live
+             ============================================================ -->
+        <section id="live" style="text-align: center;">
+            <h1 style="font-size: 3em; margin-top: 0.8em;">Live</h1>
+            <aside class="notes">
+                Switch to the live demo.
+            </aside>
+        </section>
+
+    </div><!-- /.slides -->
+</div><!-- /.reveal -->
+
+<!-- Reveal.js JavaScript from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/plugin/highlight/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/plugin/search/search.js"></script>
+
+<script>
+    // Reveal.js configuration – mirrors tabular/index.html settings
+    Reveal.initialize({
+        width: "100%",
+        height: "100%",
+        margin: 0.04,
+
+        controls: true,
+        controlsTutorial: true,
+        controlsLayout: 'bottom-right',
+        progress: true,
+        slideNumber: 'c/t',
+        hash: true,
+        history: true,
+        keyboard: true,
+        overview: true,
+        center: true,
+        touch: true,
+        loop: false,
+        rtl: false,
+        navigationMode: 'default',
+        shuffle: false,
+        fragments: true,
+        fragmentInURL: true,
+        embedded: false,
+        help: true,
+        showNotes: false,
+        autoPlayMedia: null,
+        autoSlide: 0,
+        autoSlideStoppable: true,
+        mouseWheel: false,
+        hideInactiveCursor: true,
+        hideCursorTime: 5000,
+        hideAddressBar: true,
+        previewLinks: false,
+        transition: 'slide',
+        transitionSpeed: 'default',
+        backgroundTransition: 'fade',
+        viewDistance: 3,
+        mobileViewDistance: 2,
+        parallaxBackgroundImage: '',
+        parallaxBackgroundSize: '',
+        display: 'block',
+        pdfMaxPagesPerSlide: 1,
+        pdfSeparateFragments: true,
+
+        plugins: [
+            RevealMarkdown,
+            RevealHighlight,
+            RevealNotes,
+            RevealZoom,
+            RevealSearch
+        ]
+    });
+
+    // Initialize Mermaid diagrams after Reveal.js is ready
+    Reveal.on('ready', event => {
+        mermaid.initialize({
+            startOnLoad: false,
+            theme: 'default',
+            themeVariables: {
+                fontSize: '14px',
+                primaryColor: '#e1f5ff',
+                primaryTextColor: '#000',
+                primaryBorderColor: '#333',
+                lineColor: '#333',
+                secondaryColor: '#fff4e1',
+                tertiaryColor: '#f0e1ff'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+
+        // Render all mermaid diagrams
+        const mermaidDivs = document.querySelectorAll('.mermaid');
+        mermaidDivs.forEach((div, index) => {
+            const graphDefinition = div.textContent;
+            div.innerHTML = '';
+            mermaid.render(`mermaid-${index}`, graphDefinition).then(result => {
+                div.innerHTML = result.svg;
+            });
+        });
+    });
+
+    // Re-render Mermaid on slide change to ensure visibility
+    Reveal.on('slidechanged', event => {
+        const mermaidDivs = event.currentSlide.querySelectorAll('.mermaid');
+        if (mermaidDivs.length > 0) {
+            mermaidDivs.forEach((div, index) => {
+                if (!div.querySelector('svg')) {
+                    const graphDefinition = div.textContent;
+                    div.innerHTML = '';
+                    mermaid.render(`mermaid-slide-${Date.now()}-${index}`, graphDefinition).then(result => {
+                        div.innerHTML = result.svg;
+                    });
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>
